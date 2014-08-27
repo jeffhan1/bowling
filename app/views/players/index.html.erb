@@ -1,10 +1,10 @@
-<h1>Listing players</h1>
+<h1>Bowling Application</h1>
 
 <table>
   <thead>
     <tr>
-      <th> name</th>
-      <th>Score</th>
+      <th>Name</th>
+      <!--<th>Score</th>-->
       <th></th>
       <th></th>
       <th></th>
@@ -14,7 +14,7 @@
   <tbody>
     <% @players.each do |player| %>
       <tr>
-        <td><%= player. name %></td>
+        <td><%= player.name %></td>
         <td><%= player.score %></td>
         <td><%= link_to 'Show', player %></td>
         <td><%= link_to 'Edit', edit_player_path(player) %></td>
@@ -27,3 +27,5 @@
 <br>
 
 <%= link_to 'New Player', new_player_path %>
+<br>
+<%= link_to 'Start', 'start' %>
