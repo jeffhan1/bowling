@@ -1,0 +1,31 @@
+<h1>Listing frames</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Try1</th>
+      <th>Try2integer</th>
+      <th>Number</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @frames.each do |frame| %>
+      <tr>
+        <td><%= frame.try1 %></td>
+        <td><%= frame.try2integer %></td>
+        <td><%= frame.number %></td>
+        <td><%= link_to 'Show', frame %></td>
+        <td><%= link_to 'Edit', edit_frame_path(frame) %></td>
+        <td><%= link_to 'Destroy', frame, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Frame', new_frame_path %>

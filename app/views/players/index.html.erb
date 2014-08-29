@@ -1,11 +1,10 @@
-<h1>Bowling Application</h1>
+<h1>Add Players</h1>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
-      <!--<th>Score</th>-->
-      <th></th>
+      <th>Match ID</th>
       <th></th>
       <th></th>
     </tr>
@@ -15,17 +14,17 @@
     <% @players.each do |player| %>
       <tr>
         <td><%= player.name %></td>
-        <td><%= player.score %></td>
-        <td><%= link_to 'Show', player %></td>
+        <td><%= player.match_id %></td>
         <td><%= link_to 'Edit', edit_player_path(player) %></td>
-        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Remove', player, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<br><br><br>
 
 <%= link_to 'New Player', new_player_path %>
-<br>
-<%= link_to 'Start', 'score' %>
+<br><br>
+<%= link_to 'Start Game', match_url(@match) %>
+

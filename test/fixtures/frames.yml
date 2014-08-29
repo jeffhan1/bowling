@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  try1: 1
+  try2integer: MyString
+  number: 1
+
+two:
+  try1: 1
+  try2integer: MyString
+  number: 1

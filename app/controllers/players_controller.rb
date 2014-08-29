@@ -4,7 +4,11 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
+    if params[:match_id]
+      session[:match_id] = params[:match_id]
+    end
+    @match = Match.find(session[:match_id])
+    @players = @match.players
   end
 
   # GET /players/1
@@ -25,6 +29,8 @@ class PlayersController < ApplicationController
   # POST /players.json
   def create
     @player = Player.new(player_params)
+    @player.match_id = session[:match_id] 
+    @player.played = 0
 
     respond_to do |format|
       if @player.save
