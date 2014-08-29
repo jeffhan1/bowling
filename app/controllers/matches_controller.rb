@@ -44,7 +44,7 @@ class MatchesController < ApplicationController
   def update
 
     @match.update_score(params[:score][:value])
-
+    
     respond_to do |format|
       if @match.update(match_params)
         format.html { redirect_to @match, notice: 'Match name successfully updated.' }
@@ -54,7 +54,7 @@ class MatchesController < ApplicationController
         format.json { render json: @match.errors, status: :unprocessable_entity }
       end
     end
-  end
+ end
 
   # DELETE /matches/1
   # DELETE /matches/1.json

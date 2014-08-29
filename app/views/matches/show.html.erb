@@ -28,50 +28,20 @@
 <% end %>
 </table>
 
-<br><br><br>
+<br>
+<br>
+<br>
 
 
+<h2><b><u><%= @match.current_player_name %></b>'s Turn</u></h2>
 
-<% 
-a = 0
-@match.players.each do |player| 
-  if player.played == 0 %>
+<br>
+Enter Score: 
+<%= render 'frames/form' %>
 
-    <h2><b><u><%= player.name %></b>'s Turn</u></h2>
-
-    <%=
-    if player.try == 1 
-      new_frame_path(:player_id => player.id, :frame_number => @match.frame)
-    end 
-    %>
-    <br>
-    Enter Score: 
-    <%=
-    render 'frames/form'
-    %>
-
-<%
-    if player.try == 2
-      player.played = 0
-    end
-
-
-  break
-  end
-  a = a + 1
-  end
-
-
-#Check if all players has played. If so, reset all and move to next frame
-#if a == @match.players.size
- # @match.players.each do |player| 
- #   player.played == 0
- # end
- # @match.frame++
- #end
-%>
-
-<br><br><br>
+<br>
+<br>
+<br>
 
 <%= link_to 'Reset Game', matches_url %>
 

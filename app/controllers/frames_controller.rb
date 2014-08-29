@@ -36,6 +36,7 @@ class FramesController < ApplicationController
     @frame.try2 = 0
     @frame.number = session[:frame_number]
     @frame.game_id = session[:player_id]  
+    @frame.completed = false
 
     respond_to do |format|
       if @frame.save
