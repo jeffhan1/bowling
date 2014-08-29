@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 20140828185100) do
 
   create_table "frames", force: true do |t|
     t.integer  "try1"
-    t.string   "try2integer"
+    t.integer  "try2"
     t.integer  "number"
-    t.integer  "game_id"
+    t.integer  "player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20140828185100) do
 
   create_table "matches", force: true do |t|
     t.string   "name"
+    t.integer  "frame"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -39,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140828185100) do
     t.string   "score"
     t.integer  "played"
     t.integer  "match_id"
+    t.integer  "try"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -9,6 +9,7 @@ class PlayersController < ApplicationController
     end
     @match = Match.find(session[:match_id])
     @players = @match.players
+
   end
 
   # GET /players/1
@@ -31,6 +32,7 @@ class PlayersController < ApplicationController
     @player = Player.new(player_params)
     @player.match_id = session[:match_id] 
     @player.played = 0
+    @player.try = 1
 
     respond_to do |format|
       if @player.save
@@ -77,4 +79,64 @@ class PlayersController < ApplicationController
     def player_params
       params.require(:player).permit(:name, :score)
     end
+
+
+
+    def calculate
+      @frames = Frame.find(params[:id])
+      @player.score = '';
+      @frames.each do |frame|
+        number = frame.number
+
+        one = frame.try1
+        two = 0
+        if one == 10 
+          @player.score += 'X'
+        elsif one == 0
+          @player.score += '-'
+        else
+          @player.score += one
+        end
+
+        two = frame.try2
+        if one != 10
+          if one+two == 10
+            @player.score += '/'
+          elsif two == 0
+            @player.score += '-'
+          else
+            @player.score += two
+          end
+        end
+      end
+
+    end
+
+    def get_score
+      score = 0
+      a = @player.score
+
+      for i in 0..a.length 
+        if  a[i] == 'X'
+          if a[i+1] == 'X'
+            if a[i+2] == 'X'
+              score = score + 30
+            else
+              score = score + 20 + a[i+2]
+            end
+          else
+            score = score + a[i+1] 
+            if a[i+2] == '/'
+              score = score + (10 - a[i+1])
+            else
+              score = score + a[i+2]
+            end
+          end
+        else
+          score = score + a[i]
+        end
+      end
+    end
+
+
 end

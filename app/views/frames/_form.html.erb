@@ -1,6 +1,6 @@
-<%= form_for(@frame) do |f| %>
+<%= form_for("score", :url => match_url(1), :html => { :method => :put }) do |f| %>
   <% if @frame.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation"
       <h2><%= pluralize(@frame.errors.count, "error") %> prohibited this frame from being saved:</h2>
 
       <ul>
@@ -11,18 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :try1 %><br>
-    <%= f.number_field :try1 %>
-  </div>
-  <div class="field">
-    <%= f.label :try2integer %><br>
-    <%= f.text_field :try2integer %>
-  </div>
-  <div class="field">
-    <%= f.label :number %><br>
-    <%= f.number_field :number %>
-  </div>
+    <div class="field">
+      <%= f.label :value %><br>
+      <%= f.number_field :value %>
+    </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

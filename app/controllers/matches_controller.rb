@@ -10,6 +10,7 @@ class MatchesController < ApplicationController
   # GET /matches/1
   # GET /matches/1.json
   def show
+    @frame = Frame.new
   end
 
   # GET /matches/new
@@ -25,6 +26,7 @@ class MatchesController < ApplicationController
   # POST /matches.json
   def create
     @match = Match.new(match_params)
+    @match.frame = 1
 
     respond_to do |format|
       if @match.save
@@ -40,6 +42,9 @@ class MatchesController < ApplicationController
   # PATCH/PUT /matches/1
   # PATCH/PUT /matches/1.json
   def update
+
+    @match.update_score(params[:score][:value])
+
     respond_to do |format|
       if @match.update(match_params)
         format.html { redirect_to @match, notice: 'Match name successfully updated.' }
@@ -61,6 +66,13 @@ class MatchesController < ApplicationController
     end
   end
 
+  def roll
+      format.html { 'Hello' }
+  end
+
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_match
@@ -75,12 +87,6 @@ class MatchesController < ApplicationController
 
 
 
-  private
-    def roll
-      @match.players.each do |player| 
 
 
-
-    end
-  end
 end

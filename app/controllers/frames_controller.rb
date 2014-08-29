@@ -5,6 +5,13 @@ class FramesController < ApplicationController
   # GET /frames.json
   def index
     @frames = Frame.all
+    if params[:frame_number]
+      session[:frame_number] = params[:frame_number]
+    end
+    if params[:player_id]
+      session[:player_id] = params[:player_id]
+    end
+    @player = session[:player_id]
   end
 
   # GET /frames/1
@@ -25,6 +32,10 @@ class FramesController < ApplicationController
   # POST /frames.json
   def create
     @frame = Frame.new(frame_params)
+    @frame.try1 = 0
+    @frame.try2 = 0
+    @frame.number = session[:frame_number]
+    @frame.game_id = session[:player_id]  
 
     respond_to do |format|
       if @frame.save
