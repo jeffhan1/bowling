@@ -42,8 +42,6 @@ class MatchesController < ApplicationController
   # PATCH/PUT /matches/1
   # PATCH/PUT /matches/1.json
   def update
-
-    @match.update_score(params[:score][:value])
     
     respond_to do |format|
       if @match.update(match_params)
@@ -65,13 +63,6 @@ class MatchesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  def roll
-      format.html { 'Hello' }
-  end
-
-
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -3,7 +3,8 @@ class CreateFrames < ActiveRecord::Migration
     create_table :frames do |t|
       t.integer :try1
       t.integer :try2
-      t.integer :number
+      t.integer :try3
+      t.integer :total
       t.integer :player_id
       t.boolean :completed
 

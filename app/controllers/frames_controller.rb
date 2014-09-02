@@ -34,7 +34,7 @@ class FramesController < ApplicationController
     @frame = Frame.new(frame_params)
     @frame.try1 = 0
     @frame.try2 = 0
-    @frame.number = session[:frame_number]
+    @frame.total = 0
     @frame.game_id = session[:player_id]  
     @frame.completed = false
 

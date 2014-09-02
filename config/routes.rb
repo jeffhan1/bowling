@@ -1,12 +1,12 @@
 Bowling::Application.routes.draw do
   resources :frames
 
-  resources :games
-
   resources :matches
 
   get "game/index"
   resources :players
+
+  resources :score
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

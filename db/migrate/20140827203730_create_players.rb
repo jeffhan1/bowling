@@ -5,7 +5,7 @@ class CreatePlayers < ActiveRecord::Migration
       t.string :score
       t.integer :played
       t.integer :match_id
-      t.integer :try
+      t.integer :bonus
 
       t.timestamps
     end

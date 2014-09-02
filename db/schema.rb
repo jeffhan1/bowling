@@ -16,15 +16,10 @@ ActiveRecord::Schema.define(version: 20140828185100) do
   create_table "frames", force: true do |t|
     t.integer  "try1"
     t.integer  "try2"
-    t.integer  "number"
+    t.integer  "try3"
+    t.integer  "total"
     t.integer  "player_id"
     t.boolean  "completed"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "games", force: true do |t|
-    t.integer  "player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,7 +36,7 @@ ActiveRecord::Schema.define(version: 20140828185100) do
     t.string   "score"
     t.integer  "played"
     t.integer  "match_id"
-    t.integer  "try"
+    t.integer  "bonus"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

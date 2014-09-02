@@ -2,9 +2,8 @@
 
 <p>
   <strong><h1>
-  <%= @match.name %> 
+  <%= @match.name %>
   </h1></strong>
-  <h2>Frame <%= @match.frame %></h2>
 </p>
 
 <table>
@@ -31,14 +30,9 @@
 
 <br>
 <br>
-
-<b>=========================================</b>
-
-<h2><b><u><%= @match.current_player_name %></b>'s Turn</u></h2>
-
 <br>
-Enter Score: 
-<%= render 'frames/form' %>
+
+<h2><b><u><%= @match.winner %></b> is the winner</u></h2>
 
 <br>
 <br>
