@@ -95,7 +95,7 @@ class Match < ActiveRecord::Base
 
 
   def end_of_round
-    if players.where(:played => 0).size == 0
+    if !end_of_game && players.where(:played => 0).size == 0
       Player.update_all(:played => 0)
       if self.frame < 10
         v = self.frame + 1;   

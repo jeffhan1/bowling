@@ -48,14 +48,12 @@ class Player < ActiveRecord::Base
 				end
 
 			else
-				if count >= 10
+				if count == 10
 					return points
 				end
 
-				if i-2 >= 0
-					if score[i-2] != 'X' && score[i-2] != '/'
-						count += 1
-					end
+				if i > 0 && i%2 != 0
+					count += 1
 				end
 				points = points + score[i].to_i
 			end
