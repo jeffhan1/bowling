@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Match ID</th>
       <th></th>
       <th></th>
     </tr>
@@ -14,7 +13,6 @@
     <% @players.each do |player| %>
       <tr>
         <td><%= player.name %></td>
-        <td><%= player.match_id %></td>
         <td><%= link_to 'Edit', edit_player_path(player) %></td>
         <td><%= link_to 'Remove', player, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>

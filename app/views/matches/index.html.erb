@@ -6,7 +6,6 @@
       <th>Name</th>
       <th></th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -14,8 +13,7 @@
     <% @matches.each do |match| %>
       <tr>
         <td><%= match.name %></td>
-        <td><%= link_to 'Edit', edit_match_path(match) %></td>
-        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Add Players', players_url(:match_id => match.id) %></td>
       </tr>
     <% end %>

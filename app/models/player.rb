@@ -64,4 +64,10 @@ class Player < ActiveRecord::Base
 	end
 
 
+
+
+	validates :name, :presence => true
+	validates :name, :uniqueness => true
+
+
 end
