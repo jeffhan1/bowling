@@ -3,6 +3,10 @@ require 'test_helper'
 class MatchesControllerTest < ActionController::TestCase
   setup do
     @match = matches(:one)
+    @update = {
+      :name => 'Match 1'
+      :frame => 1
+    }
   end
 
   test "should get index" do
@@ -18,7 +22,7 @@ class MatchesControllerTest < ActionController::TestCase
 
   test "should create match" do
     assert_difference('Match.count') do
-      post :create, match: { name: @match.name }
+      post :create, :match => @update
     end
 
     assert_redirected_to match_path(assigns(:match))
@@ -35,7 +39,7 @@ class MatchesControllerTest < ActionController::TestCase
   end
 
   test "should update match" do
-    patch :update, id: @match, match: { name: @match.name }
+    put :update, id: @match.to_param, :match => @update
     assert_redirected_to match_path(assigns(:match))
   end
 
