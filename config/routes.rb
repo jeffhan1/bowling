@@ -3,7 +3,6 @@ Bowling::Application.routes.draw do
 
   resources :matches
 
-  get "game/index"
   resources :players
 
   resources :score

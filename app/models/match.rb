@@ -98,8 +98,8 @@ class Match < ActiveRecord::Base
     if !end_of_game && players.where(:played => 0).size == 0
       Player.update_all(:played => 0)
       if self.frame < 10
-        v = self.frame + 1;   
-        self.update_attributes(:frame => v)  #why not self.frame += 1...
+        frame_number = self.frame + 1;   
+        self.update_attributes(:frame => frame_number)
       end
     end
   end

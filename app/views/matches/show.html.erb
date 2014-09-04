@@ -19,7 +19,36 @@
       <%= player.name %> </br>
     </td>
     <td>
-      <%= player.score %> </br>
+      
+      <table border="1" cellspacing="0" cellpadding="4">
+        <tr>
+        <% for i in 1..@match.frame %>
+          <th colspan="2"><center><%= i %></center></th> 
+        <% end %>
+        </tr>
+          
+        <% a = 0 %>  
+        <tr>
+
+          <% while a < player.score.length %>
+            <% if player.score[a] == 'X' %>
+                <td></td>
+                <td><center>X</center></td>
+                <% a += 1 %>
+            <% else %>
+                <td><center><%= player.score[a] %><center></td>
+                <td><center><%= player.score[a+1] %><center></td>
+                <% a += 2 %>
+            <% end %>
+          <% end %>
+        
+        </tr>
+
+        <tr>
+          <!-- DISPLAY POINTS FOR EACH FRAME -->
+        </tr>
+
+      </table>
     </td>
     <td>
       <%= player.get_points %> </br>

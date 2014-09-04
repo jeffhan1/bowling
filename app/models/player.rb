@@ -16,8 +16,8 @@ class Player < ActiveRecord::Base
 					return points
 				end
 
-
 				points = points + 10
+
 				if i+1 < score.length
 
 					if score[i+1] == 'X'

@@ -6,6 +6,7 @@
       <th>Name</th>
       <th></th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -15,6 +16,9 @@
         <td><%= match.name %></td>
         <td><%= link_to 'Delete', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Add Players', players_url(:match_id => match.id) %></td>
+        <% if match.players.size != 0 %>
+        <td><%= link_to 'Return To Game', match %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

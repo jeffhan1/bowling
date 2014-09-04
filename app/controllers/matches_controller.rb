@@ -30,7 +30,7 @@ class MatchesController < ApplicationController
 
     respond_to do |format|
       if @match.save
-        format.html { redirect_to matches_path, notice: 'Match successfully created.' }
+        format.html { redirect_to matches_path}
         format.json { render action: 'show', status: :created, location: @match }
       else
         format.html { render action: 'new' }
