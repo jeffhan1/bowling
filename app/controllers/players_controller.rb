@@ -27,6 +27,13 @@ class PlayersController < ApplicationController
   def edit
   end
 
+  def end
+    if params[:match_id]
+      session[:match_id] = params[:match_id]
+    end
+    @match = Match.find(session[:match_id])
+  end
+
   # POST /players
   # POST /players.json
   def create

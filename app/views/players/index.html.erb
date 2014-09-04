@@ -25,6 +25,7 @@
 <%= link_to 'New Player', new_player_path %>
 <br><br>
 
+<!-- if match has no players, can't start game -->
 <% if @players.size != 0 %>
-<%= link_to 'Start Game', match_url(@match) %>
+  <%= link_to 'Start Game', match_url(@match) %>
 <% end %>

@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20140828185100) do
     t.integer  "try2"
     t.integer  "try3"
     t.integer  "total"
+    t.integer  "number"
     t.integer  "player_id"
     t.boolean  "completed"
     t.datetime "created_at"

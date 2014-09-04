@@ -5,6 +5,7 @@ class CreateFrames < ActiveRecord::Migration
       t.integer :try2
       t.integer :try3
       t.integer :total
+      t.integer :number
       t.integer :player_id
       t.boolean :completed
 

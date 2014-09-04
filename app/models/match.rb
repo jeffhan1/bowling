@@ -19,6 +19,7 @@ class Match < ActiveRecord::Base
         s = player.read_attribute(:score) + s
         player.update_attributes(:score => s)
         player.update_attributes(:played => 1)
+        player.update_frame_scores
       else
         frame = player.frames.last
         if frame.read_attribute(:try2) == nil
@@ -32,6 +33,7 @@ class Match < ActiveRecord::Base
           s = player.read_attribute(:score) + s
           player.update_attributes(:score => s)
           player.update_attributes(:played => 1)
+          player.update_frame_scores
         end
       end
       return
@@ -55,8 +57,9 @@ class Match < ActiveRecord::Base
         s = player.read_attribute(:score) + s
   		  player.update_attributes(:score => s)
   		  player.update_attributes(:played => 1)
+        player.update_frame_scores
       else
-        frame = player.frames.create(:try1 => score, :completed => false)
+        frame = player.frames.create(:try1 => score, :completed => false, :number => self.frame, :total => 0)
         s = check_score(score)
         if (s == 'X')
           if (self.frame == 10)
@@ -69,24 +72,32 @@ class Match < ActiveRecord::Base
             frame = player.frames.last
             frame.update_attributes(:completed => true)
             player.update_attributes(:played => 1)
+            s = player.read_attribute(:score) + s
+            player.update_attributes(:score => s)
+            player.update_frame_scores
           end
+        else 
+          s = player.read_attribute(:score) + s
+          player.update_attributes(:score => s)
         end
-        s = player.read_attribute(:score) + s
-        player.update_attributes(:score => s)
       end
 
 
   	else
-  		frame = player.frames.create(:try1 => score, :completed => false)
+  		frame = player.frames.create(:try1 => score, :completed => false, :number => self.frame, :total => 0)
 
       s = check_score(score)
       if (s == 'X')
           frame = player.frames.last
           frame.update_attributes(:completed => true)
           player.update_attributes(:played => 1)
+          s = player.read_attribute(:score) + s
+          player.update_attributes(:score => s)
+          player.update_frame_scores
+      else 
+  		  s = player.read_attribute(:score) + s
+        player.update_attributes(:score => s)
       end
-  		s = player.read_attribute(:score) + s
-      player.update_attributes(:score => s)
   	end
 
     end_of_round
@@ -96,7 +107,7 @@ class Match < ActiveRecord::Base
 
   def end_of_round
     if !end_of_game && players.where(:played => 0).size == 0
-      Player.update_all(:played => 0)
+      players.update_all(:played => 0)
       if self.frame < 10
         frame_number = self.frame + 1;   
         self.update_attributes(:frame => frame_number)
@@ -135,7 +146,14 @@ class Match < ActiveRecord::Base
     end
   end
 
-
+  def started
+    players.each do |player| 
+      if player.frames.any?
+        return true
+      end
+    end
+    return false
+  end
 
   validates :name, :presence => true
   validates :name, :uniqueness => true

@@ -15,9 +15,17 @@
       <tr>
         <td><%= match.name %></td>
         <td><%= link_to 'Delete', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Add Players', players_url(:match_id => match.id) %></td>
+        <!-- if match has started, can't add new players -->
+        <% if !match.started %>
+          <td><%= link_to 'Add Players', players_url(:match_id => match.id) %></td>
+        <% end %>
+        <!-- if match has no players, can't start game -->
         <% if match.players.size != 0 %>
-        <td><%= link_to 'Return To Game', match %></td>
+          <% if match.end_of_game %>
+            <td><%= link_to 'See Results', matches_path %></td>     <!-- need to go to end page -->
+          <% else %>
+            <td><%= link_to 'Return To Game', match %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
