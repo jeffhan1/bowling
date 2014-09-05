@@ -53,7 +53,12 @@ gem 'awesome_print'
 
 group :development, :test do 
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'factory_girl_rails'
 end
+
+gem 'twitter-bootstrap-rails'
+
+
 
 
 

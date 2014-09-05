@@ -9,6 +9,10 @@ class Match < ActiveRecord::Base
 		players.where(:played => 0).first
   end
 
+  def player_count
+    players.size
+  end
+
   def update_score score
   	player = current_player
     if player.bonus != 0
@@ -123,16 +127,26 @@ class Match < ActiveRecord::Base
     end
   end
 
-  def winner
-    p = nil
+  def winner 
+    ary = Array.new
+    a = 0
     max = 0
     players.each do |player|
-      if max < player.get_points
-        max = player.get_points
-        p = player
-     end
+      if max <= player.get_points
+        if max < player.get_points
+          a = 0
+          max = player.get_points
+          ary.clear
+          ary[a] = player
+          a += 1
+        else 
+          max = player.get_points
+          ary[a] = player   
+          a += 1    
+        end
+      end
    end
-   return p.name
+   return ary
   end
 
 

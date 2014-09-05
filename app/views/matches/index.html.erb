@@ -1,6 +1,7 @@
 <h1>List of Matches</h1>
 
-<table>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -18,11 +19,14 @@
         <!-- if match has started, can't add new players -->
         <% if !match.started %>
           <td><%= link_to 'Add Players', players_url(:match_id => match.id) %></td>
+          <td>&nbsp;</td>
+        <% else %>
+          <td>&nbsp;</td>
         <% end %>
         <!-- if match has no players, can't start game -->
         <% if match.players.size != 0 %>
           <% if match.end_of_game %>
-            <td><%= link_to 'See Results', matches_path %></td>     <!-- need to go to end page -->
+            <td><%= link_to 'See Results', match %></td>     <!-- need to go to end page -->
           <% else %>
             <td><%= link_to 'Return To Game', match %></td>
           <% end %>
