@@ -1,5 +1,5 @@
-//$('#scores').html("<%= render 'matches/scoresheet' %>");
-$("#whole").html("<%= render @match %>");
+//$('#scores').html("<%= render @match %>");
+$('#whole').html("<%= escape_javascript(render @match) %>");
 
 //$("#whole").innerHTML += "<%= render @match %>";
 

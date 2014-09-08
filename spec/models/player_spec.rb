@@ -18,6 +18,18 @@ describe Player do    #'describe the behavior of the Player class'
       player.score = "9-9-9-9-9-9-9-9-9-9-"
       expect(player.get_points).to eq(90)
   	end
+
+    #it "follows the scoring rules" do
+    #  player.score = "X/"
+    #  expect(player).to eq(false)
+
+    #  player.score = "X56"
+    #  expect(player).to eq(false)
+
+    #  player.score = "XXXXXXXXXXXXX"
+    #  expect(player).to eq(false)
+    #end
+
   end
 
 end
