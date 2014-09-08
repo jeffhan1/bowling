@@ -1,4 +1,5 @@
-<%= form_for("score", :url => score_url(session[:match_id]), :html => { :method => :put }) do |f| %>
+<%= form_for("score", :url => score_url(session[:match_id]), :html => { :method => :put }, :remote => true) do |f| %>
+  <!-- form_for("score", :url => {:controller => "score", :action => "update"}) -->
   <% if @frame.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@frame.errors.count, "error") %> prohibited this frame from being saved:</h2>

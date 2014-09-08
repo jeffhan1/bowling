@@ -107,11 +107,11 @@ class Player < ActiveRecord::Base
 
 		a = 0	 #used for looping
 		while a < f.size
-			frame = f[a]
-			try1 = frame.read_attribute(:try1)
-			if try1 == 10
+			frame = f[a]	#get current frame
+			try1 = frame.read_attribute(:try1)	
+			if try1 == 10  #if it's a strike
 				if a == 8  #it's the second last frame, and it's a strike
-					if a+1 < f.size
+					if a+1 < f.size	  #if the next frame exists
 						next_frame = f[a+1]
 						next_try1 = next_frame.read_attribute(:try1)
 						next_try2 = next_frame.read_attribute(:try2)
