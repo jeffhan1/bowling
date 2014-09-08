@@ -51,10 +51,7 @@ class Match < ActiveRecord::Base
         if (frame.read_attribute(:try1) + score.to_i == 10)
           s = '/'
           if (self.frame == 10)
-            player.update_attributes(:bonus => 1)
-            s = player.read_attribute(:score) + s
-            player.update_attributes(:score => s)
-            player.update_attributes(:played => 0)
+              bonus(player, 1, s)
             return
           end
         end
@@ -67,18 +64,10 @@ class Match < ActiveRecord::Base
         s = check_score(score)
         if (s == 'X')
           if (self.frame == 10)
-            player.update_attributes(:bonus => 2)
-            s = player.read_attribute(:score) + s
-            player.update_attributes(:score => s)
-            player.update_attributes(:played => 0)
+              bonus(player, 2, s)
             return
           else
-            frame = player.frames.last
-            frame.update_attributes(:completed => true)
-            player.update_attributes(:played => 1)
-            s = player.read_attribute(:score) + s
-            player.update_attributes(:score => s)
-            player.update_frame_scores
+            strike(player, s)
           end
         else 
           s = player.read_attribute(:score) + s
@@ -92,12 +81,7 @@ class Match < ActiveRecord::Base
 
       s = check_score(score)
       if (s == 'X')
-          frame = player.frames.last
-          frame.update_attributes(:completed => true)
-          player.update_attributes(:played => 1)
-          s = player.read_attribute(:score) + s
-          player.update_attributes(:score => s)
-          player.update_frame_scores
+        strike(player, s)
       else 
   		  s = player.read_attribute(:score) + s
         player.update_attributes(:score => s)
@@ -108,6 +92,21 @@ class Match < ActiveRecord::Base
 
   end
 
+  def strike player, s
+    frame = player.frames.last
+    frame.update_attributes(:completed => true)
+    player.update_attributes(:played => 1)
+    s = player.read_attribute(:score) + s
+    player.update_attributes(:score => s)
+    player.update_frame_scores
+  end
+
+  def bonus player, number, s
+    player.update_attributes(:bonus => number)
+    s = player.read_attribute(:score) + s
+    player.update_attributes(:score => s)
+    player.update_attributes(:played => 0)
+  end
 
   def end_of_round
     if !end_of_game && players.where(:played => 0).size == 0
