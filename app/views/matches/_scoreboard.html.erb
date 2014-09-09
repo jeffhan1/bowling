@@ -1,0 +1,26 @@
+<p>
+  <strong><h1><%= @match.name %> </h1></strong>
+  <h2>Frame <%= @match.frame %> </h2>
+</p>
+
+<table>
+  <tr>
+    <th> Name</th>
+    <th> Score </th>
+    <th> Points </th>
+  </tr>
+
+<% @match.players.each do |player| %>
+  <tr>
+    <td>
+      <%= player.name %> </br>
+    </td>
+    <td>
+      <%= render partial: "matches/scoresheet", locals: {player: player} %>
+    </td>
+    <td>
+      <center><%= player.get_points %> </br></center>
+    </td>
+  </tr>
+<% end %>
+</table>
